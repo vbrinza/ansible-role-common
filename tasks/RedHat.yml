@@ -3,3 +3,9 @@
 - name: Install Centos 7 EPEL
   yum: name="https://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm" state=present
   when: ansible_distribution_major_version == '7'
+
+- name: Install tools
+  yum: name={{ item }} steate=present
+  with_items:
+    - vim
+  when: ansible_os_family == "RedHat" or ansible_os_family == "Centos"
